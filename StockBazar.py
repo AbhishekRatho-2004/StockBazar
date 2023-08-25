@@ -364,7 +364,7 @@ selected=option_menu(
                     orientation='horizontal',
                     styles={
                         
-                        'container':{"background-color":"teal","border":'2px solid white','width':'1430px','height':'64px',},
+                        'container':{"background-color":"teal","border":'2px solid white','width':'1400px','height':'64px',},
                         'nav-link':{'font-size':'18.3px','font-weight':'bold','text-align':'center','color':'black','margin-top':'-3.5px','margin-left':'-3.4px','--hover-color':'red','height':'51px'},
                         'nav-link-selected':{"background-color":'green','color':'white'}
                     }
