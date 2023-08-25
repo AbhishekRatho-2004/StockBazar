@@ -11,6 +11,7 @@ import yfinance as yf
 from streamlit_lottie import st_lottie
 import json
 import requests
+from stockmatter import stockmarket
 import plotly.express as px
 import matplotlib.pyplot as plt
 import plotly.graph_objs as go
