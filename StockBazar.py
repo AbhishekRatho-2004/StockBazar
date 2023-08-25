@@ -23,6 +23,7 @@ import streamlit.components.v1 as components
 from texttoaudio import speech
 from courseshtml import telugu,hindi,english
 from predictapp import stockPredict
+from Indicator import indicator
 html_code = '''
 <!DOCTYPE html>
 <html lang="en">
@@ -784,12 +785,13 @@ try:
                     per=st.selectbox('Period',options=['1d','2d','1w','1mo','3mo','6mo','1y'])
                     inter=st.selectbox('Interval',options=['1d','5d','1wk'])
                     tech=yf.download(tickerIndicator,period=per,interval=inter)
-
+                    
                     df=pd.DataFrame()
                     ind_list=df.ta.indicators(as_list=True)
                     technical_indicator=st.selectbox('Tech Indicators',options=ind_list)
                     method=technical_indicator
                     indicator=pd.DataFrame(getattr(ta,method)(low=tech['Low'],close=tech['Close'],high=tech['High'],open=tech['Open'],volume=tech['Volume']))
+                    indicator()
                     indcl,indop=st.columns(2)
                     with indcl:
                         st.metric(':blue[Closing Price]',value=tech.Close.mean().round(2),delta='1%')
@@ -803,7 +805,7 @@ try:
                     indicator['Close']=tech['Close']
                     fig_ind_new=px.line(indicator)
                     st.plotly_chart(fig_ind_new)
-                    st.table(indicator.head(10).style.set_table_styles(styles))
+                    st.table(indicator.tail(10).style.set_table_styles(styles))
                     footer()
                 if selected=='🏫Course':
                     cour,quiz=st.tabs(['Courses','Quiz'])
