@@ -277,7 +277,8 @@ def footer():
     with f1:
         st.subheader(':red[Company]')
         st.text('About Us')
-        st.text('Services')
+        scrn = 'https://screener-neqlzpw2cf9cxbgwhwyhx3.streamlit.app/'
+        st.markdown("[Screener](%s)" % scrn)
         url = 'https://feedback-zxhfcsv93dauqdcevk7lvh.streamlit.app/'
         st.markdown("[Feedback](%s)" % url)
         st.text('T&c')
