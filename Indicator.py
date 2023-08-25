@@ -1,5 +1,5 @@
 import streamlit as st
-def indicator():
+def indicate():
     st.subheader(':blue[Moving Average]')
     st.write('''
     It is widely used technical indicators used to identify the trends or patterns in data mostly used in time series data.The most common applications of moving averages are to identify trend direction and to determine support and resistance levels.When asset prices cross over their moving averages, it may generate a trading signal for technical traders.Choose the window size (period) for the moving average. 
