@@ -778,7 +778,6 @@ try:
                     footer()
                 if selected=='📈Indicators':
                     st.subheader(':blue[Technical Indicators Analysis]')
-                    st.markdown('<h3>Technical Indicator</h3>',unsafe_allow_html=True)
                     st.markdown('<p>A technical indicator is a mathematical calculation or pattern derived from price, volume, or open interest of a security (such as stocks, currencies, commodities, etc.) in financial markets. These indicators are used by traders and analysts to gain insights into the markets trend, momentum, volatility, and potential reversal points. Technical indicators are applied to charts to help traders make more informed decisions about when to buy, sell, or hold a particular security.</p>',unsafe_allow_html=True)
                     indicate()
                     stockindic=st.text_input('')
