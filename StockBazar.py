@@ -642,7 +642,7 @@ try:
                         with mc:
                             st.metric("Days Avg",value=company['Close'].mean().round(2))
                         min30,min60=st.tabs(['30m','60m'])
-                        fig=px.line(company,y=['Close'])
+                        fig=px.line(company,y=['Close'],title='Closing Price of that day')
                         st.plotly_chart(fig,use_container_width=True)
                         with min30:
                             st.title('Closing price with Price change 30mins')
