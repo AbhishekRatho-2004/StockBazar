@@ -364,7 +364,7 @@ selected=option_menu(
                     orientation='horizontal',
                     styles={
                         
-                        'container':{"background-color":"teal","border":'2px solid white','width':'1300px','height':'64px',},
+                        'container':{"background-color":"teal","border":'2px solid white','width':'1600px','height':'64px',},
                         'nav-link':{'font-size':'18.3px','font-weight':'bold','text-align':'center','color':'black','margin-top':'-3.5px','margin-left':'-3.4px','--hover-color':'red','height':'51px'},
                         'nav-link-selected':{"background-color":'green','color':'white'}
                     }
@@ -549,57 +549,57 @@ try:
                     Similar to the previous point, "average lowest price" isn't a standard term. It could refer to the average of the lowest prices of a stock over a specific time frame. This would involve calculating the average of the lowest daily prices the stock reached during that period.
                     ''')
                     if sea is not None:
-                        st.title(f'Details of the {sea}')
-                        tickerCompany = get_symbol(sea)
-                        sym=yf.Ticker(tickerCompany)
-                        information=pd.Series(sym.info)
-                        details=pd.DataFrame(information)
-                        x=details.iloc[11,0]
-                        st.subheader(x)
+                    st.title(f'Details of the {sea}')
+                    tickerCompany = get_symbol(sea)
+                    sym=yf.Ticker(tickerCompany)
+                    information=pd.Series(sym.info)
+                    details=pd.DataFrame(information)
+                    x=details.iloc[11,0]
+                    st.subheader(x)
 
-                        info,actions,holders,news=st.tabs(['Information','Actions','Holders','News'])
-                        with info:
-                            df2=details.head(10)
-                            df3=details.tail(30)
-                            df3=pd.concat([df2,df3],axis=0)
-                            st.table(df3.style.set_table_styles(styles))
-                        with actions:
-                            st.title(':red[Actions]')
-                            st.write('In the context of the stock market, the term "actions" is not a commonly used term to refer to specific concepts. It is possible that you might be referring to "transactions" or "trades." Let us clarify these terms:')
-                            st.table(sym.actions.head(15).style.set_table_styles(styles))
-                            div,spl=st.columns(2)
-                            with div:
-                                dividend=pd.DataFrame(sym.actions.Dividends)
-                                st.metric('Average Dividends',value=dividend.Dividends.mean().round(2))
-                                st.line_chart(dividend)
-                                st.table(dividend.head(10).style.set_table_styles(styles))
-                            with spl:
-                                split=pd.DataFrame(sym.actions['Stock Splits'])
-                                st.metric('Average splits',value=split['Stock Splits'].mean().round(2))
-                                st.line_chart(split)
-                                st.table(split.head(10).style.set_table_styles(styles))
-                        with holders:
-                            st.title(":red[Holders]")
-                            st.subheader(f'the holders of the company {sea}')
-                            st.table(sym.major_holders.style.set_table_styles(styles))
-                            st.subheader(f'The instituational holders of the company {sea}')
-                            st.table(sym.institutional_holders.style.set_table_styles(styles))
-                        with news:
+                    info,actions,holders,news=st.tabs(['Information','Actions','Holders','News'])
+                    with info:
+                        df2=details.head(10)
+                        df3=details.tail(30)
+                        df3=pd.concat([df2,df3],axis=0)
+                        st.table(df3.style.set_table_styles(styles))
+                    with actions:
+                        st.title(':red[Actions]')
+                        st.write('In the context of the stock market, the term "actions" is not a commonly used term to refer to specific concepts. It is possible that you might be referring to "transactions" or "trades." Let us clarify these terms:')
+                        st.table(sym.actions.head(15).style.set_table_styles(styles))
+                        div,spl=st.columns(2)
+                        with div:
+                            dividend=pd.DataFrame(sym.actions.Dividends)
+                            st.metric('Average Dividends',value=dividend.Dividends.mean().round(2))
+                            st.line_chart(dividend)
+                            st.table(dividend.head(10).style.set_table_styles(styles))
+                        with spl:
+                            split=pd.DataFrame(sym.actions['Stock Splits'])
+                            st.metric('Average splits',value=split['Stock Splits'].mean().round(2))
+                            st.line_chart(split)
+                            st.table(split.head(10).style.set_table_styles(styles))
+                    with holders:
+                        st.title(":red[Holders]")
+                        st.subheader(f'the holders of the company {sea}')
+                        st.table(sym.major_holders.style.set_table_styles(styles))
+                        st.subheader(f'The instituational holders of the company {sea}')
+                        st.table(sym.institutional_holders.style.set_table_styles(styles))
+                    with news:
                                     
-                            st.title(f":blue[Trending News]")
-                            i=0
-                            j=0
-                            for new in sym.news:    
-                                st.subheader(sym.news[i]['title'])
-                                image_url=sym.news[i]['thumbnail']['resolutions'][0]['url']
-                                try:
-                                    response = requests.get(image_url)
-                                    img = Image.open(BytesIO(response.content))
-                                    st.image(img, caption=sym.news[i]['publisher'], use_column_width=True)
-                                except Exception as e:
-                                    st.error("Error loading the image. Please check the URL and try again.")                
-                                st.write(sym.news[i]['link'])
-                                i=i+1
+                        st.title(f":blue[Trending News]")
+                        i=0
+                        j=0
+                        for new in sym.news:    
+                            st.subheader(sym.news[i]['title'])
+                            image_url=sym.news[i]['thumbnail']['resolutions'][0]['url']
+                            try:
+                                response = requests.get(image_url)
+                                img = Image.open(BytesIO(response.content))
+                                st.image(img, caption=sym.news[i]['publisher'], use_column_width=True)
+                            except Exception as e:
+                                st.error("Error loading the image. Please check the URL and try again.")                
+                            st.write(sym.news[i]['link'])
+                            i=i+1
                     footer()
                 if selected=='💹Stocks':
                     search=st.text_input('',placeholder='Search for a company')
