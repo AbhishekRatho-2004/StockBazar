@@ -11,14 +11,13 @@ import yfinance as yf
 from streamlit_lottie import st_lottie
 import json
 import requests
-from stocksmatter import stockmarket
 import plotly.express as px
 import matplotlib.pyplot as plt
 import plotly.graph_objs as go
 import pandas_ta as ta
 from PIL import Image
 import requests
-from stockmatter import stockmarket
+from stocksmatter import stockmarket
 from io import BytesIO
 import yahooquery as yq
 import streamlit.components.v1 as components
