@@ -17,6 +17,7 @@ import plotly.graph_objs as go
 import pandas_ta as ta
 from PIL import Image
 import requests
+from stockmatter import stockmarket
 from io import BytesIO
 import yahooquery as yq
 import streamlit.components.v1 as components
@@ -606,7 +607,7 @@ try:
                     search=st.text_input('',placeholder='Search for a company')
                     tickerstock = get_symbol(search)
                     company = yf.download(tickerstock, period='1d',interval='1m')
-                    
+                    stockmarket()
                     t1,t2,t3,t4=st.tabs(['General','Moving Average','Price Change','Intraday Range'])
                     with t1:
                         cl,op,hg,lw=st.columns(4)
