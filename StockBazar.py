@@ -629,7 +629,7 @@ try:
                                 high=company['High'],
                                 low=company['Low'],
                                 close=company['Close'])])
-                        st.plotly_chart(fig)
+                        st.plotly_chart(fig,use_container_width=True)
 
                     with t2:
                         company['30mins']=company['Close'].rolling(window=30).mean()
@@ -643,15 +643,15 @@ try:
                             st.metric("Days Avg",value=company['Close'].mean().round(2))
                         min30,min60=st.tabs(['30m','60m'])
                         fig=px.line(company,y=['Close'])
-                        st.plotly_chart(fig)
+                        st.plotly_chart(fig,use_container_width=True)
                         with min30:
                             st.title('Closing price with Price change 30mins')
                             fig=px.line(company,y=['Close','30mins'])
-                            st.plotly_chart(fig)
+                            st.plotly_chart(fig,use_container_width=True)
                         with min60:
                             st.title('Closing price with Price change 60mins')
                             fig=px.line(company,y=['Close','60mins'])
-                            st.plotly_chart(fig)
+                            st.plotly_chart(fig,use_container_width=True)
                     with t3:
                         company['PriceChange']=company['Close']-company['Open']
                         mn,ad=st.columns(2)
@@ -680,7 +680,7 @@ try:
 
                         # Create the figure
                         fig = go.Figure(data=[bar_trace], layout=layout)
-                        st.plotly_chart(fig)
+                        st.plotly_chart(fig,use_container_width=True)
                         df2 = -company[['Open','Close','Adj Close','PriceChange']]
                         style1 = company[['Open','Close','Adj Close','PriceChange']].style.applymap(color_negative_red)
                         st.table(style1)
@@ -777,7 +777,7 @@ try:
                             st.line_chart(stock.iloc[0:183,2:5],y=['High','Low'])
                     plt.figure(figsize=(12,6))
                     fig=px.line(stock)
-                    st.plotly_chart(fig)
+                    st.plotly_chart(fig,use_container_width=True)
                     footer()
                 if selected=='📈Indicators':
                     st.subheader(':blue[Technical Indicators Analysis]')
@@ -807,7 +807,7 @@ try:
                         st.metric(':blue[Lowest Price]',value=tech.Low.mean().round(2),delta='-1.4%')
                     indicator['Close']=tech['Close']
                     fig_ind_new=px.line(indicator)
-                    st.plotly_chart(fig_ind_new)
+                    st.plotly_chart(fig_ind_new,use_container_width=True)
                     st.table(indicator.tail(10).style.set_table_styles(styles))
                     footer()
                 if selected=='🏫Course':
