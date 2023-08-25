@@ -23,7 +23,7 @@ import streamlit.components.v1 as components
 from texttoaudio import speech
 from courseshtml import telugu,hindi,english
 from predictapp import stockPredict
-from Indicator import indicator
+from Indicator import indicate
 html_code = '''
 <!DOCTYPE html>
 <html lang="en">
@@ -780,6 +780,7 @@ try:
                     st.subheader(':blue[Technical Indicators Analysis]')
                     st.markdown('<h3>Technical Indicator</h3>',unsafe_allow_html=True)
                     st.markdown('<p>A technical indicator is a mathematical calculation or pattern derived from price, volume, or open interest of a security (such as stocks, currencies, commodities, etc.) in financial markets. These indicators are used by traders and analysts to gain insights into the markets trend, momentum, volatility, and potential reversal points. Technical indicators are applied to charts to help traders make more informed decisions about when to buy, sell, or hold a particular security.</p>',unsafe_allow_html=True)
+                    indicate()
                     stockindic=st.text_input('')
                     tickerIndicator = get_symbol(stockindic)
                     per=st.selectbox('Period',options=['1d','2d','1w','1mo','3mo','6mo','1y'])
@@ -791,7 +792,7 @@ try:
                     technical_indicator=st.selectbox('Tech Indicators',options=ind_list)
                     method=technical_indicator
                     indicator=pd.DataFrame(getattr(ta,method)(low=tech['Low'],close=tech['Close'],high=tech['High'],open=tech['Open'],volume=tech['Volume']))
-                    indicator()
+                    
                     indcl,indop=st.columns(2)
                     with indcl:
                         st.metric(':blue[Closing Price]',value=tech.Close.mean().round(2),delta='1%')
