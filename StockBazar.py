@@ -604,9 +604,10 @@ try:
                             i=i+1
                     footer()
                 if selected=='💹Stocks':
+                    stockmarket()
                     search=st.text_input('',placeholder='Search for a company')
                     tickerstock = get_symbol(search)
-                    stockmarket()
+                    
                     company = yf.download(tickerstock, period='1d',interval='1m')
                     t1,t2,t3,t4=st.tabs(['General','Moving Average','Price Change','Intraday Range'])
                     with t1:
